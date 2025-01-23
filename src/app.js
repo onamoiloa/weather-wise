@@ -1,3 +1,19 @@
+function refreshWeather(response) {
+    let temperatureElement = document.querySelector("#temperature");
+    let temperature = response.data.temperature.current;
+    let cityElement =document.querySelector("#city");
+
+cityElement.innerHTML = response.data.city;
+    temperatureElement.innerHTML = Math.round(temperature);
+    
+}
+
+function searchCity(city) {
+    let apiKey= "44f618d99f8a16c0a9a9065877f062b1";
+    let apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q={city}&key={44f618d99f8a16c0a9a9065877f062b1}&units=metric';
+axios.get(apiUrl).then(refreshWeather);
+}
+
 function handleSearchSubmit(event) {
     event.preventDefault();
     let searchInput = document.querySelector("#search-form-input");
